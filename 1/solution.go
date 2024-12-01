@@ -23,10 +23,10 @@ func part1() int {
 	seconds := make([]int, 0)
 	for sc.Scan() {
 		line := sc.Text()
-		matches := re.FindAllStringIndex(line, -1)
+		matches := re.FindAllString(line, -1)
 
-		left, _ := strconv.Atoi(line[matches[0][0]:matches[0][1]])
-		right, _ := strconv.Atoi(line[matches[1][0]:matches[1][1]])
+		left, _ := strconv.Atoi(matches[0])
+		right, _ := strconv.Atoi(matches[1])
 		firsts = append(firsts, left)
 		seconds = append(seconds, right)
 
