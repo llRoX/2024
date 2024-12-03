@@ -53,14 +53,12 @@ func part1() int {
 	f, _ := os.ReadFile(path)
 	data := string(f)
 
-	re, _ := regexp.Compile(`mul\(\d+,\d+\)`)
-	matches := re.FindAllString(data, -1)
+	re, _ := regexp.Compile(`mul\((\d+),(\d+)\)`)
+	matches := re.FindAllStringSubmatch(data, -1)
 	sum := 0
-	innerRe, _ := regexp.Compile(`\d+`)
 	for _, match := range matches {
-		nMatches := innerRe.FindAllString(match, -1)
-		n1, _ := strconv.Atoi(nMatches[0])
-		n2, _ := strconv.Atoi(nMatches[1])
+		n1, _ := strconv.Atoi(match[1])
+		n2, _ := strconv.Atoi(match[2])
 		sum += n1 * n2
 	}
 
@@ -69,5 +67,5 @@ func part1() int {
 
 func main() {
 	fmt.Println(part1())
-	fmt.Println(part2())
+	//fmt.Println(part2())
 }
